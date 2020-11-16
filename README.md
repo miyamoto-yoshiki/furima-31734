@@ -22,13 +22,13 @@
 
 | Column       | Type       | Options                        |
 | ------------ | ---------- | ------------------------------ |
-| item_name    | string     | null: false                    |
+| name         | string     | null: false                    |
 | text         | text       | null: false                    |
 | category_id  | integer    | null: false                    |
 | condition_id | integer    | null: false                    |
 | deli_fee_id  | integer    | null: false                    |
 | area_id      | integer    | null: false                    |
-| days_id      | integer    | null: false                    |
+| day_id      | integer    | null: false                    |
 | price        | integer    | null: false                    |
 | user         | references | null: false, foreign_key: true |
 
@@ -51,15 +51,15 @@
 
 ## addresses テーブル
 
-| Column    | Type       | Options                        |
-| --------- | ---------- | ------------------------------ |
-| post_num  | string     | null: false                    | # xxx-yyyy -が入るためstring?
-| prefecture| string     | null: false                    | #県
-| city      | string     | null: false                    | #市
-| details   | string     | null: false                    | #町名番地等
-| build_num | integer    | null: false                    |
-| phon_num  | integer    | null: false                    | 
-| user      | references | null: false, foreign_key: true |
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| post_num      | string     | null: false                    | 
+| prefecture_id | integer    | null: false                    |
+| city          | string     | null: false                    | #市
+| details       | string     | null: false                    | #町名番地等
+| build_num     | string     |                                |
+| phone_num     | string     | null: false                    | #integerにすると最初の0が保存できなくなる。
+| user          | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :order
