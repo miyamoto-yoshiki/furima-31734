@@ -15,7 +15,6 @@
 ### Association
 
 - has_many :items
-- has_many :, through: 
 - has_many :orders
 
 ## items テーブル
@@ -39,10 +38,11 @@
 
 ## orders テーブル
 
-| Column       | Type       | Options     |
-| ------------ | ---------- | ----------- |
-| buyer_id     | integer    | null: false |
-| sold_item_id | integer    | null: false |
+| Column    | Type    | Options     |
+| --------- | ------- | ----------- |
+| buyer_id  | integer | null: false |
+| seller_id | integer | null: false |
+| item_id   | integer | null: false |
 
 ### Association
 
