@@ -17,22 +17,20 @@
 ### Association
 - has_many :items
 - has_many :orders
-- has_many :addresses #現住所や実家などの選択肢があるため
 
 ## items テーブル
 
-| Column      | Type      | Options           |
-| ----------- | --------- | ----------------- |
-| item_name   | string    | null: false       |
-| seller      | string    | null: false       |
-| text        | text      | null: false       |
-| category_id | integer   | null: false       |
-| condition_id| integer   | null: false       |
-| deli_fee_id | integer   | null: false       |
-| area_id     | integer   | null: false       |
-| days_id     | integer   | null: false       |
-| price       | integer   | null: false       |
-| user        | references| null: false       | #READMEへの外部キー制約の記述はこれで合っていますか？
+| Column       | Type       | Options                        |
+| ------------ | ---------- | ------------------------------ |
+| item_name    | string     | null: false                    |
+| text         | text       | null: false                    |
+| category_id  | integer    | null: false                    |
+| condition_id | integer    | null: false                    |
+| deli_fee_id  | integer    | null: false                    |
+| area_id      | integer    | null: false                    |
+| days_id      | integer    | null: false                    |
+| price        | integer    | null: false                    |
+| user         | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -40,12 +38,10 @@
 
 ## orders テーブル
 
-| Column    | Type      | Options           |
-| --------- | --------- | ----------------- |
-| buyer_id  | integer   | null: false       |
-| item_id   | integer   | null: false       |
-| user      | references| null: false       |
-| item      | references| null: false       |
+| Column    | Type       | Options                        |
+| --------- | ---------- | ------------------------------ |
+| user      | references | null: false, foreign_key: true |
+| item      | references | null: false, foreign_key: true |
 
 
 ### Association
@@ -55,15 +51,15 @@
 
 ## addresses テーブル
 
-| Column    | Type      | Options     |
-| --------- | --------- | ----------- |
-| post_num  | string    | null: false | # xxx-yyyy -が入るためstring?
-| prefecture| string    | null: false | #県
-| city      | string    | null: false | #市
-| details   | string    | null: false | #町名番地等
-| build_num | integer   | null: false |
-| phon_num  | integer   | null: false | 
-| user      | references| null: false |
+| Column    | Type       | Options                        |
+| --------- | ---------- | ------------------------------ |
+| post_num  | string     | null: false                    | # xxx-yyyy -が入るためstring?
+| prefecture| string     | null: false                    | #県
+| city      | string     | null: false                    | #市
+| details   | string     | null: false                    | #町名番地等
+| build_num | integer    | null: false                    |
+| phon_num  | integer    | null: false                    | 
+| user      | references | null: false, foreign_key: true |
+
 ### Association
-- belongs_to :user
 - belongs_to :order
