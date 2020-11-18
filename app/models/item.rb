@@ -6,6 +6,7 @@ class Item < ApplicationRecord
   belongs_to :deli_fee
   belongs_to :area
   belongs_to :day
+  has_one_attached :image #messageテーブルにカラムを追加する必要なない
 
   #空の投稿を保存できないようにする
   validates :name, :text, presence: true
