@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   def index
-    @items = Item.all
+    #@items = Item.all
+    @items = Item.order("created_at DESC")
   end
 
   def new
@@ -19,7 +20,7 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    item.require(:item).permit(:title, :catch_copy, :concept, :image).merge(user_id: current_user.id)
+    item.require(:item).permit(:name, :text, :category_id, :condition_id, :deli_fee_id, :area_id, :day_id,:price, :genre_id).merge(user_id: current_user.id)
   end
 
   def move_to_session
@@ -29,8 +30,8 @@ class ItemsController < ApplicationController
   end
 
   def edit_access
-    @prototype = Prototype.find(params[:id])
-    unless  current_user.id == @prototype.user_id
+    @item = Item.find(params[:id])
+    unless  current_user.id == @item.user_id
       redirect_to root_path
     end
   end
