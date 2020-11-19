@@ -14,4 +14,5 @@ class Item < ApplicationRecord
   validates :area_id, numericality: { other_than: 1 }  #genre_idのid:1以外のときに保存できるという意味
   validates :category_id, numericality: { other_than: 1 }
   validates :condition_id, numericality: { other_than: 1 }
+  validates :image, presence:true
 end

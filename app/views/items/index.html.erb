@@ -179,6 +179,8 @@
     </ul>
   </div>
   <%# /商品一覧 %>
+  <%# image_tag item.image.variant(resize: '500x500'), class: 'item-image' %>
+
 </div>
 <%= link_to( new_item_path, method: :get, class: 'purchase-btn') do %>
   <span class='purchase-btn-text'>出品する</span>
