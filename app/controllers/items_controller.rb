@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
   def index
-    #@items = Item.all
-    @items = Item.order("created_at DESC")
+    @allitems = Item.all.order("created_at DESC")
   end
 
   def new
@@ -10,8 +9,9 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params) #何を新しく保存するか指定
-    @item.user_id = current_user.id #誰が投稿したかを指定     #キータから参照
-    if @item.save #もし保存ができたら
+    # @item.user_id = current_user.id #誰が投稿したかを指定     #キータから参照
+    if @item.valid?
+      @item.save #もし保存ができたら
       redirect_to root_path
     else #できなければ
       render :new
