@@ -1,5 +1,5 @@
-class Area < ActiveHash::Base #あるモデル内（クラス内）でActiveHashを用いる際に必要となるクラス。ActiveHashのGemに定義されている。
-  self.data = [                #self.dataでテーブルを作成しているイメージ
+class Area < ActiveHash::Base # あるモデル内（クラス内）でActiveHashを用いる際に必要となるクラス。ActiveHashのGemに定義されている。
+  self.data = [ # self.dataでテーブルを作成しているイメージ
     { id: 1, name: '---' },
     { id: 2, name: '北海道' },
     { id: 3, name: '青森県' },
@@ -47,11 +47,8 @@ class Area < ActiveHash::Base #あるモデル内（クラス内）でActiveHash
     { id: 45, name: '大分県' },
     { id: 46, name: '宮崎県' },
     { id: 47, name: '鹿児島県' },
-    { id: 48, name: '沖縄県' },
+    { id: 48, name: '沖縄県' }
   ]
-    include ActiveHash::Associations   #ActiveHashを用いて、has_manyを設定するためにmoduleを取り込む。
-    has_many :items
-
-  end
-
-  
+  include ActiveHash::Associations   # ActiveHashを用いて、has_manyを設定するためにmoduleを取り込む。
+  has_many :items
+end
