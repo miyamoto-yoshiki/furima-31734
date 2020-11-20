@@ -5,9 +5,9 @@ function pullDown() {
 
   sellPrice.addEventListener("input", () => {
     const Price = document.getElementById("item-price").value;
-    const Dom = Math.floor(Price * 0.1);
-    const Profit = Price - Dom
-    addTaxDom.innerHTML = Dom
+    const Tax = Math.floor(Price * 0.1);
+    const Profit = Price - Tax
+    addTaxDom.innerHTML = Tax
     profitDom.innerHTML = Profit
   })
 }
