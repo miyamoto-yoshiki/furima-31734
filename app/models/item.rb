@@ -17,4 +17,6 @@ class Item < ApplicationRecord
   validates :deli_fee_id, numericality: { other_than: 1 }
   validates :day_id, numericality: { other_than: 1 }
   validates :image, presence:true
+  validates :price, presence:true #numericality: {message: '販売価格が入力されていません' }
+  validates :price, numericality: { only_integer: true, :less_than => 10000000, :greater_than_or_equal_to => 300, :only_interger => true }  #numericalitはデフォルトだと少数も許可しているので、integerで整数のみ
 end

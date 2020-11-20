@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_action :move_to_session, only: [:new ]
+
   def index
     @allitems = Item.all.order("created_at DESC")
   end
