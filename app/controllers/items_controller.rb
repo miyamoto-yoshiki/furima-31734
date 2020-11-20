@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params) # 何を新しく保存するか指定
-    # @item.user_id = current_user.id #誰が投稿したかを指定     #キータから参照
+    # @item.user_id = current_user.id #誰が投稿したかを指定 
     if @item.valid?
       @item.save # もし保存ができたら
       redirect_to root_path
@@ -28,10 +28,5 @@ class ItemsController < ApplicationController
 
   def move_to_session
     redirect_to new_user_session_path unless user_signed_in?
-  end
-
-  def edit_access
-    @item = Item.find(params[:id])
-    redirect_to root_path unless current_user.id == @item.user_id
   end
 end

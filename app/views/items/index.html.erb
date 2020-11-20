@@ -126,8 +126,7 @@
     <%= link_to '新規投稿商品', url:items_path, method: :post, class: "subtitle"  %>
     <ul class='item-lists' >
       <% @allitems.each do |i| %>
-      <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
-      <li class='list'>
+      <li class='list'>    <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開 %>
         <%= link_to "#" do %>
         <div class='item-img-content'>
           <%= image_tag  i.image, class: "item-img" %>
@@ -154,7 +153,6 @@
         <% end %>
       <% end %>  
       </li>
-      <%# //商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
 
       <%# 商品がない場合のダミー %>
       <% if @allitems.length == 0 %>  <%# @allitemsの中の要素数を数えている %>
