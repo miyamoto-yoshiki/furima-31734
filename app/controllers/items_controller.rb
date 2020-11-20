@@ -10,12 +10,11 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params) # 何を新しく保存するか指定
-    # @item.user_id = current_user.id #誰が投稿したかを指定 
+    @item = Item.new(item_params)
     if @item.valid?
-      @item.save # もし保存ができたら
+      @item.save 
       redirect_to root_path
-    else # できなければ
+    else
       render :new
     end
   end
