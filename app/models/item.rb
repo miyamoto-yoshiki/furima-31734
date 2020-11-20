@@ -15,7 +15,7 @@ class Item < ApplicationRecord
     validates :image
     validates :price
   end
- 
+
   # ジャンルの選択が「--」の時は保存できないようにする
   with_options numericality: { other_than: 1 } do
     validates :area_id
@@ -24,6 +24,6 @@ class Item < ApplicationRecord
     validates :deli_fee_id
     validates :day_id
   end
-  
+
   validates :price, numericality: { only_integer: true, less_than: 10_000_000, greater_than_or_equal_to: 300, only_interger: true }  # numericalitはデフォルトだと少数も許可しているので、integerで整数のみ
 end
