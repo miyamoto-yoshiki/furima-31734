@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :move_to_session, only: [:new, :create, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
   before_action :edit_access, only: [:edit]
   before_action :get_item, only: [:show, :edit, :update]
 
@@ -31,7 +31,6 @@ class ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to item_path
     else
-      # @item = Item.find(params[:id])
       render :edit
     end
   end
@@ -43,10 +42,6 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:name, :text, :category_id, :condition_id, :deli_fee_id, :area_id, :day_id, :price, :image).merge(user_id: current_user.id)
-  end
-
-  def move_to_session
-    redirect_to new_user_session_path unless user_signed_in?
   end
 
   def edit_access
