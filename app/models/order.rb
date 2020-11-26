@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
-  validates :price, presence: true
-  has_one :item
-  belongs_to :prefecture
-  attr_accessor :token
+  # belongs_to :prefecture
+  belongs_to :user
+  belongs_to :item
+  # belongs_to :address
 end
