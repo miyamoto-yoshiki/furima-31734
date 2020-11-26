@@ -11,6 +11,7 @@ class OrderItem
     validates :token
   end
 
+  
   def save
     item = Item.find(item_id)  #:必要ない
 
