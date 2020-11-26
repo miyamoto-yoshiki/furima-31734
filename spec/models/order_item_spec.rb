@@ -10,7 +10,7 @@ RSpec.describe OrderItem, type: :model do
       it 'すべての値が正しく入力されていれば保存できること' do
         expect(@order_item).to be_valid
       end
-      
+
       it 'build_numは空でも保存できること' do
         @order_item.build_num =  ""
         expect(@order_item).to be_valid
@@ -64,6 +64,11 @@ RSpec.describe OrderItem, type: :model do
         @order_item.phone_num =  "111133335555"
         @order_item.valid?
         expect(@order_item.errors.full_messages).to include("Phone num is too long (maximum is 11 characters)")
+      end
+      it 'phone_numにハイフンが含まれていると保存できないこと' do
+          @order_item.phone_num =  "000-3333-5555"
+          @order_item.valid?
+          expect(@order_item.errors.full_messages).to include("Phone num is too long (maximum is 11 characters)")
       end
     end
   end
