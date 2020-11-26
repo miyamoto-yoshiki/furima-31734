@@ -5,7 +5,6 @@ class OrdersController < ApplicationController
   before_action :sold_item_limitation, only: [:index, :create]
 
   def index
-    @order = Order.new
     @order_item = OrderItem.new
   end
 

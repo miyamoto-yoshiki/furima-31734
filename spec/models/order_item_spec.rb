@@ -10,6 +10,11 @@ RSpec.describe OrderItem, type: :model do
       it 'すべての値が正しく入力されていれば保存できること' do
         expect(@order_item).to be_valid
       end
+      
+      it 'build_numは空でも保存できること' do
+        @order_item.build_num =  ""
+        expect(@order_item).to be_valid
+      end
     end
 
     context '商品購入ができないとき' do
@@ -25,7 +30,7 @@ RSpec.describe OrderItem, type: :model do
         expect(@order_item.errors.full_messages).to include("Post num can't be blank")
       end
       it 'post_numが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
-        @order_item.post_num =  "1112222"
+        @order_item.post_num = "1112222"
         @order_item.valid?
         expect(@order_item.errors.full_messages).to include("Post num is invalid. Include hyphen(-)")
       end
@@ -44,10 +49,6 @@ RSpec.describe OrderItem, type: :model do
         @order_item.details =  ""
         @order_item.valid?
         expect(@order_item.errors.full_messages).to include("Details can't be blank")
-      end
-      it 'build_numは空でも保存できること' do
-        @order_item.build_num =  ""
-        expect(@order_item).to be_valid
       end
       it 'phone_numが空だと保存できないこと' do
         @order_item.phone_num =  ""
