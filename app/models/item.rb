@@ -8,6 +8,7 @@ class Item < ApplicationRecord
   belongs_to :area
   belongs_to :day
   has_one_attached :image # itemテーブルにimageカラムを追加する必要なない
+  has_one :order
 
   # 空の投稿を保存できないようにする
   with_options presence: true do
