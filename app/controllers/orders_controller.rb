@@ -6,21 +6,9 @@ class OrdersController < ApplicationController
   end
 
   def create
-    
     @item = Item.find(params[:item_id])
-    # @order = Order.new(orderitem_params)
-    # Address.create(orderitem_params)    
-    # if @order.valid?
-    #   pay_item
-    #   @order.save
-    #   return redirect_to root_path
-    # else
-    #   render 'index'
-    # end
-
-    #カリキュラム参照
     @order_item = OrderItem.new(orderitem_params)
-    #binding.pry  #orderitem_parms @order_item
+    
     if @order_item.valid? #
       pay_item
       @order_item.save
@@ -46,13 +34,4 @@ class OrdersController < ApplicationController
     #:authenticity_token,はform_withで送るときは必ずついてくるので、キーとして指定する必要はない
     #.require(:order_item)はindexのmodel: で指定しているので、記述が必要
   end
-
-  
-  # def order_params
-  #   params.permit(:price).merge(token: params[:token]).merge(user_id:current_user.id).merge(item_id:@item.id)
-  # end
-
-  # def address_params
-  #   params.permit(:post_num, :prefecture_id, :city, :details, :build_num, :phone_num).merge(user_id:@item.user.id)
-  # end
 end
