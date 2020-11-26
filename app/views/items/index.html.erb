@@ -126,16 +126,18 @@
     <%= link_to '新規投稿商品', items_path, method: :post, class: "subtitle"  %>
     <ul class='item-lists' >
       <% @allitems.each do |i| %>
-        <li class='list'>    <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開 %>
+        <li class='list'>
           <% unless @allitems.length == 0 %>
             <%= link_to item_path(i.id), method: :get do %>
               <div class='item-img-content'>
                 <%= image_tag  i.image, class: "item-img" %>
 
                 <%# 商品が売れていればsold outを表示しましょう %>
-                <div class='sold-out'>
-                  <span>Sold Out!!</span>
-                </div>
+                  <% if i.order.present?  %>
+                  <div class='sold-out'>
+                    <span>Sold Out!!</span>
+                  </div>
+                  <% end %>
                 <%# //商品が売れていればsold outを表示しましょう %>
               </div>
 
@@ -151,6 +153,7 @@
                   </div>
                 </div>
               </div>
+            
             <% end %>
           <% end %>  
         </li>

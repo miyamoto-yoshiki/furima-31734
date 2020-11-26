@@ -1,15 +1,17 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :create]
+  before_action :get_item, only: [:index, :create]
+  before_action :self_order_limitation, only: [:index, :create]
+  before_action :sold_item_limitation, only: [:index, :create]
+
   def index
     @order = Order.new
-    @item = Item.find(params[:item_id])
-    @order_item = OrderItem.new   #「OrderItem」に編集
+    @order_item = OrderItem.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
-    @order_item = OrderItem.new(orderitem_params)
-    
-    if @order_item.valid? #
+    @order_item = OrderItem.new(orderitem_params) 
+    if @order_item.valid?
       pay_item
       @order_item.save
       redirect_to action: :index
@@ -33,5 +35,18 @@ class OrdersController < ApplicationController
     params.require(:order_item).permit(:post_num, :prefecture_id, :city, :details, :build_num, :phone_num, :price).merge(user_id:current_user.id, item_id: params[:item_id] , token: params[:token])
     #:authenticity_token,はform_withで送るときは必ずついてくるので、キーとして指定する必要はない
     #.require(:order_item)はindexのmodel: で指定しているので、記述が必要
+  end
+
+  private
+  def get_item
+    @item = Item.find(params[:item_id])
+  end
+
+  def self_order_limitation
+    redirect_to root_path if current_user.id == @item.user_id
+  end
+
+  def sold_item_limitation
+    redirect_to root_path if @item.order.present?
   end
 end

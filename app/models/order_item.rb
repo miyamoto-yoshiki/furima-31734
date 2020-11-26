@@ -2,15 +2,13 @@ class OrderItem
   include ActiveModel::Model
   attr_accessor :price, :user_id, :item_id, :post_num, :prefecture_id, :city, :details, :build_num, :phone_num ,:token #ここで受け取る
 
-  #order.rbのバリデーション
-
-  #address.rbのバリデーション
   with_options presence: true do
     validates :post_num,      format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
-    validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
+    validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :city
     validates :details
-    validates :phone_num,     format: { with: /\A[0-9]{11}+\z/, message: '' }
+    validates :phone_num,     format: { with: /\A[0-9]+\z/ } , length: { maximum: 11}
+    validates :token
   end
 
   def save
